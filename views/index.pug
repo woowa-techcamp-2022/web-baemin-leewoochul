@@ -1,5 +1,53 @@
 extends layout
 
+mixin rightArrow()
+  img.right-arrow(src="/images/arrow.png" alt="오른쪽 화살표")
+
+
+mixin navTab(src, name)
+  a.nav__tab(href="#") 
+    img(src= src, alt= name)
+    = name 
+
+mixin newLink(name, description)
+  li
+    a.new-link
+      div
+        div.new-link__top
+          span.name= name
+          img(src="/images/new.png", alt="신규")
+        span.new-link__description= description
+      +rightArrow
+
+mixin link(name)
+  li
+    a.link(href="#") 
+      span.link__text= name
+      +rightArrow
+
+block stylesheet 
+  link(rel="stylesheet", href="/stylesheets/index.css")
+
 block content
-  h1= title
-  p Welcome to #{title}
+  h1.title My배민
+  img.banner(src="/images/banner.png", alt="배너")
+  a.login(href="/login") 
+    img.login__profile(src="/images/profile.png", alt="프로필")
+    span.login__text 로그인해주세요
+    +rightArrow
+  nav.nav
+    +navTab("/images/point.png", "포인트")
+    +navTab("/images/coupon.png", "쿠폰함")
+    +navTab("/images/present.png", "선물함")
+    +navTab("/images/heart.png", "찜")
+    +navTab("/images/order.png", "주문내역")
+    +navTab("/images/review.png", "리뷰관리")
+  a(href="#").eco
+    img.eco__img(src="/images/sproud.png", alt="새싹")
+    span.eco__text 일회용품 덜 쓰기, 함께해요!
+    +rightArrow
+  ul.links
+    +newLink("배민페이 등록", "배민페이로 결제하면 최대 5.5% 배민포인트가 적립됩니다!")
+    +newLink("가족계정 관리", "결제수단을 공유해 우리 가족의 끼니를 챙겨주세요.")
+    +link("공지사항")
+    +link("배민커넥트 지원")
