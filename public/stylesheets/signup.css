@@ -1,0 +1,10 @@
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: 12px;
+}
+
+.signup-form .submit-button {
+  /* display: none; */
+}

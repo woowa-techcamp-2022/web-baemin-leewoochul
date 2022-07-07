@@ -10,3 +10,14 @@ export async function login(id, password) {
   });
   return result;
 }
+
+export async function signup(email, nickname, password, birthDate) {
+  const result = await fetchData('/api/signup', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ email, nickname, password, birthDate }),
+  });
+  return result;
+}

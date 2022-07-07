@@ -1,0 +1,53 @@
+* {
+  margin: 0;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.title-bar {
+  position: relative;
+}
+
+.title-bar h1 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 16px;
+}
+
+.back {
+  display: block;
+  color: black;
+  background: none;
+  border: 0;
+  width: 14px;
+  height: 14px;
+  margin: 12px;
+}
+
+.form-input {
+  width: 100%;
+  border: 0;
+  border-bottom: 1px solid #999;
+  font-size: 16px;
+}
+
+.form-input::placeholder {
+  color: #999;
+}
