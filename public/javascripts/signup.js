@@ -72,33 +72,30 @@ $emailLabel.addEventListener('click', (event) => {
   }
 });
 
-$nicknameLabel.addEventListener('input', (event) => {
-  if (event.target.value) {
-    $nicknameLabel.classList.add('valid');
-  } else {
-    $nicknameLabel.classList.remove('valid');
-  }
-});
+function addErrorToggleEvent(
+  $target,
+  errorMessage = '',
+  validator = () => true
+) {
+  $target.addEventListener('input', (event) => {
+    if (validator(event.target.value)) {
+      $target.classList.add('valid');
+      setError($target, '');
+    } else {
+      $target.classList.remove('valid');
+      setError($target, errorMessage);
+    }
+  });
+}
 
-$passwordLabel.addEventListener('input', (event) => {
-  if (validatePassword(event.target.value)) {
-    $passwordLabel.classList.add('valid');
-    setError($passwordLabel, '');
-  } else {
-    $passwordLabel.classList.remove('valid');
-    setError(
-      $passwordLabel,
-      '10자 이상 영어 대문자, 소문자, 숫자, 특수문자 중 2종류를 조합해야 합니다.'
-    );
-  }
-});
-
-$birthDateLabel.addEventListener('input', (event) => {
-  if (validateBirthDate(event.target.value)) {
-    $birthDateLabel.classList.add('valid');
-    setError($birthDateLabel, '');
-  } else {
-    $birthDateLabel.classList.remove('valid');
-    setError($birthDateLabel, '올바른 생년월일을 입력해주세요.');
-  }
-});
+addErrorToggleEvent($nicknameLabel);
+addErrorToggleEvent(
+  $passwordLabel,
+  '10자 이상 영어 대문자, 소문자, 숫자, 특수문자 중 2종류를 조합해야 합니다.',
+  validatePassword
+);
+addErrorToggleEvent(
+  $birthDateLabel,
+  '올바른 생년월일을 입력해주세요.',
+  validateBirthDate
+);
