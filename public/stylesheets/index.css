@@ -37,19 +37,18 @@
 }
 
 .nav__tab {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 6px;
+  display: grid;
+  place-items: center;
+  grid-template-rows: 60% 40%;
   color: #9d9d9d;
   border: 1px solid #eee;
-  padding: 12px;
+  padding: 6px;
   font-size: 12px;
 }
 
 .nav__tab img {
-  height: 30px;
+  padding: 6px;
+  height: 32px;
 }
 
 .eco {

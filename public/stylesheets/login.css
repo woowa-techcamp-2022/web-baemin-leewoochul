@@ -1,0 +1,45 @@
+.back {
+  display: block;
+  color: black;
+  background: none;
+  border: 0;
+  width: 14px;
+  height: 14px;
+  margin: 12px;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 12px;
+}
+
+.login-form input {
+  width: 100%;
+  border: 0;
+  border-bottom: 1px solid #999;
+  font-size: 16px;
+}
+
+.login-form input::placeholder {
+  color: #999;
+}
+
+.login-form button {
+  width: 100%;
+  border: 0;
+  background-color: #5ebebb;
+  padding: 12px 0;
+  color: white;
+  border-radius: 4px;
+}
+
+.signup {
+  text-align: center;
+}
+
+.signup a {
+  margin-left: 4px;
+  color: #5ebebb;
+}
