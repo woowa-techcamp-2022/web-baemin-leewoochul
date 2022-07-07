@@ -43,11 +43,40 @@ ul {
 
 .form-input {
   width: 100%;
+  height: 100%;
   border: 0;
-  border-bottom: 1px solid #999;
+  outline: 0;
+  border-bottom: 1px solid #ddd;
   font-size: 16px;
+  padding: 4px;
+}
+
+label.has-error .form-input {
+  border-bottom: 1px solid red;
 }
 
 .form-input::placeholder {
-  color: #999;
+  color: #bbb;
+}
+
+.form-input:focus {
+  border-bottom: 1px solid #333;
+}
+
+.submit-button {
+  width: 100%;
+  border: 0;
+  background-color: #5ebebb;
+  padding: 12px 0;
+  color: white;
+  border-radius: 4px;
+}
+
+.submit-button:disabled {
+  width: 100%;
+  border: 0;
+  background-color: #ccc;
+  padding: 12px 0;
+  color: white;
+  border-radius: 4px;
 }

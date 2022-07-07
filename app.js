@@ -5,6 +5,10 @@ import { JSONFile, Low } from 'lowdb';
 import logger from 'morgan';
 import { dirname, join } from 'path';
 import { fileURLToPath } from 'url';
+import apiRouter from './routes/api/index.js';
+import indexRouter from './routes/index.js';
+import loginRouter from './routes/login.js';
+import signupRouter from './routes/signup.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -30,11 +34,6 @@ db.data ||= {
   ],
 };
 
-import apiRouter from './routes/api/index.js';
-import indexRouter from './routes/index.js';
-import loginRouter from './routes/login.js';
-import signupRouter from './routes/signup.js';
-
 const app = express();
 
 // view engine setup
@@ -47,9 +46,9 @@ app.use(urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(join(__dirname, 'public')));
 
+app.use('/api', apiRouter);
 app.use('/', indexRouter);
 app.use('/login', loginRouter);
-app.use('/api', apiRouter);
 app.use('/signup', signupRouter);
 
 // catch 404 and forward to error handler

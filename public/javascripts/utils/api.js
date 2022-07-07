@@ -1,4 +1,4 @@
-import fetchData from './utils/fetchData.js';
+import fetchData from './fetchData.js';
 
 export async function login(id, password) {
   const result = await fetchData('/api/login', {

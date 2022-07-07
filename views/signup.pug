@@ -1,5 +1,13 @@
 extends layout
 
+mixin label(type, name, value)
+  label(class=name + "-label", for= name)= value
+    div.input-container
+      input.form-input(type= type, name= name)
+      img.check-icon.inactive(src="/images/check-inactive.png", alt="미완료")
+      img.check-icon.active(src="/images/check-active.png", alt="완료")
+    p.error
+
 block head 
   link(rel="stylesheet", href="/stylesheets/signup.css")
   script(type="module", src="/javascripts/signup.js") 
@@ -10,12 +18,16 @@ block content
     a.back(href="/login") 
       img(src="/images/arrow-left.svg", alt="뒤로가기")
   form.signup-form
-    label(for="email") 이메일
-      input.form-input(type="email", name="email")
-    label(for="nickname") 닉네임
-      input.form-input(type="text", name="nickname")
-    label(for="password") 비밀번호
-      input.form-input(type="password", name="password")
-    label(for="birthDate") 생년월일
-      input.form-input(type="text", name="birthDate")
-    button.submit-button 완료
+    label.email-label(for="email") 이메일
+      div.email-input
+        div.input-container
+          input.form-input(type="email", name="email")
+          button.cancel-button(type="button") 
+            img(src="/images/cancel-circle.png", alt="취소")
+          img.check-icon(src="/images/check-active.png", alt="완료")
+        button.duplicate-check-button(type="button") 중복확인
+      p.error
+    +label("text", "nickname", "닉네임")
+    +label("password", "password", "비밀번호")
+    +label("text", "birthDate", "생년월일")
+    button.submit-button(disabled) 완료

@@ -1,4 +1,4 @@
-import { login } from './api.js';
+import { login } from './utils/api.js';
 
 const $form = document.querySelector('.login-form');
 $form.addEventListener('submit', async (event) => {

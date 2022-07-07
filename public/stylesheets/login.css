@@ -5,15 +5,6 @@
   padding: 12px;
 }
 
-.login-form button {
-  width: 100%;
-  border: 0;
-  background-color: #5ebebb;
-  padding: 12px 0;
-  color: white;
-  border-radius: 4px;
-}
-
 .signup {
   text-align: center;
 }
