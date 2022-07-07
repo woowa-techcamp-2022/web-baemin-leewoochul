@@ -2,6 +2,7 @@ import { signup } from './utils/api.js';
 import {
   validateBirthDate,
   validateEmail,
+  validateNickname,
   validatePassword,
 } from './utils/validate.js';
 
@@ -85,11 +86,25 @@ $emailLabel.addEventListener('click', (event) => {
   }
 });
 
-function addErrorToggleEvent(
-  $target,
-  errorMessage = '',
-  validator = () => true
-) {
+const getLastCharacter = (string) => string.slice(-1);
+
+$birthDateLabel.addEventListener('input', (event) => {
+  const { target } = event;
+
+  if (
+    !/[0-9]/.test(getLastCharacter(target.value)) ||
+    target.value.length > 10
+  ) {
+    target.value = target.value.slice(0, target.value.length - 1);
+    return;
+  }
+
+  if (target.value.length === 4 || target.value.length === 7) {
+    target.value += '.';
+  }
+});
+
+function addErrorToggleEvent($target, errorMessage, validator) {
   $target.addEventListener('input', (event) => {
     if (validator(event.target.value)) {
       $target.classList.add('valid');
@@ -101,7 +116,11 @@ function addErrorToggleEvent(
   });
 }
 
-addErrorToggleEvent($nicknameLabel);
+addErrorToggleEvent(
+  $nicknameLabel,
+  '닉네임은 2~10자로 작성해주세요.',
+  validateNickname
+);
 addErrorToggleEvent(
   $passwordLabel,
   '10자 이상 영어 대문자, 소문자, 숫자, 특수문자 중 2종류를 조합해야 합니다.',
