@@ -67,12 +67,6 @@
   transform: translateY(-50%);
 }
 
-.error {
-  margin-top: 4px;
-  color: red;
-  font-size: 14px;
-}
-
 .signup-form:not(.email-success) label:not([for='email']),
 .signup-form:not(.email-success) .submit-button {
   display: none;

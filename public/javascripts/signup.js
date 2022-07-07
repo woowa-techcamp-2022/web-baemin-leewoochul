@@ -28,6 +28,19 @@ $form.addEventListener('submit', async (event) => {
   }
 });
 
+const isValid = ($target) => $target.classList.contains('valid');
+
+$form.addEventListener('input', () => {
+  if (
+    isValid($nicknameLabel) &&
+    isValid($passwordLabel) &&
+    isValid($birthDateLabel)
+  ) {
+    const $submitButton = $form.querySelector('.submit-button');
+    $submitButton.disabled = false;
+  }
+});
+
 function setError($target, value) {
   if (value === '') {
     $target.classList.remove('has-error');

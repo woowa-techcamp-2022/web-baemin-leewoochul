@@ -5,6 +5,11 @@ export function validateEmail(value) {
   );
 }
 
+export function validateNickname(nickname) {
+  // FIXME
+  return nickname ? true : false;
+}
+
 export function validatePassword(value) {
   if (value.length < 10) return false;
 

@@ -94,3 +94,9 @@ label.has-error .form-input {
   color: white;
   border-radius: 4px;
 }
+
+.error {
+  margin-top: 4px;
+  color: red;
+  font-size: 14px;
+}

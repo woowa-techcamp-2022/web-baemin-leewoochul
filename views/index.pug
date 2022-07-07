@@ -33,7 +33,11 @@ block content
   img.banner(src="/images/banner.png", alt="배너")
   a.login(href="/login") 
     img.login__profile(src="/images/profile.png", alt="프로필")
-    span.login__text 로그인해주세요
+    span.login__text
+      if user
+        | #{user.nickname}님 안녕하세요
+      else
+        | 로그인해주세요
     +rightArrow
   nav.nav
     +navTab("/images/point.png", "포인트")

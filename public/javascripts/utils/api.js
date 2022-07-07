@@ -1,12 +1,12 @@
 import fetchData from './fetchData.js';
 
-export async function login(id, password) {
+export async function login(nicknameOrEmail, password) {
   const result = await fetchData('/api/login', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ id, password }),
+    body: JSON.stringify({ nicknameOrEmail, password }),
   });
   return result;
 }

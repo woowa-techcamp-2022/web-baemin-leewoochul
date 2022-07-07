@@ -1,18 +1,22 @@
 import { login } from './utils/api.js';
 
 const $form = document.querySelector('.login-form');
+
+$form.addEventListener('input', (event) => {
+  $form.classList.remove('has-error');
+});
+
 $form.addEventListener('submit', async (event) => {
   event.preventDefault();
 
   const { target } = event;
-  const id = target.id.value;
+  const nicknameOrEmail = target.nicknameOrEmail.value;
   const password = target.password.value;
 
   try {
-    await login(id, password);
+    await login(nicknameOrEmail, password);
     window.location.href = '/';
   } catch (err) {
-    console.log(err);
-    // 에러 메시지
+    $form.classList.add('has-error');
   }
 });

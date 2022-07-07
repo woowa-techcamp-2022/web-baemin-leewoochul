@@ -21,17 +21,7 @@ await db.read();
 
 db.data ||= {
   sessions: [],
-  // FIXME: 임시 유저
-  users: [
-    {
-      id: 1,
-      email: '',
-      username: 'admin',
-      password: '123',
-      birthDate: '',
-      phoneNumber: '',
-    },
-  ],
+  users: [],
 };
 
 const app = express();
