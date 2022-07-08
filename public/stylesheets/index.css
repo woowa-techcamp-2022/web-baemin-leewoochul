@@ -51,13 +51,17 @@
   height: 32px;
 }
 
+hr {
+  height: 8px;
+  background-color: #f5f5f5;
+  border: 0;
+}
+
 .eco {
   display: flex;
   align-items: center;
   gap: 6px;
   padding: 12px 16px;
-  border-top: 8px solid #f5f5f5;
-  border-bottom: 8px solid #f5f5f5;
 }
 
 .eco__img {
