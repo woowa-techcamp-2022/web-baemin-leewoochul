@@ -11,7 +11,7 @@ mixin navTab(src, name)
 
 mixin newLink(name, description)
   li
-    a.new-link
+    a.new-link(href="#")
       div
         div.new-link__top
           span.name= name
@@ -25,7 +25,7 @@ mixin link(name)
       span.link__text= name
       +rightArrow
 
-block stylesheet 
+block head
   link(rel="stylesheet", href="/stylesheets/index.css")
 
 block content
@@ -33,7 +33,11 @@ block content
   img.banner(src="/images/banner.png", alt="배너")
   a.login(href="/login") 
     img.login__profile(src="/images/profile.png", alt="프로필")
-    span.login__text 로그인해주세요
+    span.login__text
+      if user
+        | #{user.nickname}님 안녕하세요
+      else
+        | 로그인해주세요
     +rightArrow
   nav.nav
     +navTab("/images/point.png", "포인트")
@@ -42,10 +46,12 @@ block content
     +navTab("/images/heart.png", "찜")
     +navTab("/images/order.png", "주문내역")
     +navTab("/images/review.png", "리뷰관리")
+  hr
   a(href="#").eco
     img.eco__img(src="/images/sproud.png", alt="새싹")
     span.eco__text 일회용품 덜 쓰기, 함께해요!
     +rightArrow
+  hr
   ul.links
     +newLink("배민페이 등록", "배민페이로 결제하면 최대 5.5% 배민포인트가 적립됩니다!")
     +newLink("가족계정 관리", "결제수단을 공유해 우리 가족의 끼니를 챙겨주세요.")

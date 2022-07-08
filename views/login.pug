@@ -1,0 +1,21 @@
+extends layout
+
+block head 
+  link(rel="stylesheet", href="/stylesheets/login.css")
+  script(type="module", src="/javascripts/login.js") 
+
+block content
+  a.back(href="/") 
+    img(src="/images/cancel.svg", alt="뒤로가기")
+  form.login-form 
+    div.input-container
+      input.form-input(type="text", name="nicknameOrEmail", placeholder="아이디 또는 이메일")
+      p.error.email
+    div.input-container
+      input.form-input(type="password", name="password", placeholder="비밀번호")
+      p.error.password
+    p.error.all
+    button.submit-button 로그인
+  p.signup 
+    span 혹시, 배달의민족이 처음이신가요?
+    a.signup(href="/signup") 회원가입

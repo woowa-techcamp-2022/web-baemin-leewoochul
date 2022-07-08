@@ -1,8 +1,13 @@
-const express = require('express');
-const router = express.Router();
+import { Router } from 'express';
+import { db } from '../app.js';
+const router = Router();
 
 router.get('/', function (req, res, next) {
-  res.render('index', { title: '배민 회원가입' });
+  const { session } = req.cookies;
+  const { sessions, users } = db.data;
+  const userSession = sessions.find(({ sessionId }) => sessionId == session);
+  const user = users.find((user) => user.id === userSession?.userId);
+  res.render('index', { title: '배민 회원가입', user });
 });
 
-module.exports = router;
+export default router;
