@@ -1,4 +1,6 @@
 import { signup } from './utils/api.js';
+import pipe from './utils/pipe.js';
+import { preventNonNumericInput } from './utils/regex.js';
 import {
   validateBirthDate,
   validateEmail,
@@ -86,22 +88,19 @@ $emailLabel.addEventListener('click', (event) => {
   }
 });
 
-const getLastCharacter = (string) => string.slice(-1);
+const limitBirthDateLength = (birthDate) => birthDate.slice(0, 8);
+const addDotToBirthDate = (birthDate) =>
+  birthDate
+    .replace(/^(\d{0,4})(\d{0,2})(\d{0,2})$/g, '$1.$2.$3')
+    .replace(/\.{1,2}$/g, '');
 
 $birthDateLabel.addEventListener('input', (event) => {
   const { target } = event;
-
-  if (
-    !/[0-9]/.test(getLastCharacter(target.value)) ||
-    target.value.length > 10
-  ) {
-    target.value = target.value.slice(0, target.value.length - 1);
-    return;
-  }
-
-  if (target.value.length === 4 || target.value.length === 7) {
-    target.value += '.';
-  }
+  target.value = pipe(
+    preventNonNumericInput,
+    limitBirthDateLength,
+    addDotToBirthDate
+  )(target.value);
 });
 
 function addErrorToggleEvent($target, errorMessage, validator) {
