@@ -1,10 +1,14 @@
 import cookieParser from 'cookie-parser';
-import express, { json } from 'express';
+import express, { json, urlencoded } from 'express';
 import createError from 'http-errors';
 import logger from 'morgan';
+import { dirname, join } from 'path';
+import { fileURLToPath } from 'url';
 import apiRouter from './routes/api/index.js';
 import pageRouter from './routes/page/index.js';
 import db from './utils/db.js';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 await db.read();
 
@@ -15,13 +19,13 @@ db.data ||= {
 
 const app = express();
 
-app.set('views', './views');
+app.set('views', join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
 app.use(logger('dev'));
 app.use(json());
 app.use(cookieParser());
-app.use(express.static('./public'));
+app.use(express.static(join(__dirname, 'public')));
 
 app.use('/api', apiRouter);
 app.use('/', pageRouter);

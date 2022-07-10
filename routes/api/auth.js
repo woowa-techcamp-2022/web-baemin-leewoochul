@@ -1,6 +1,5 @@
 import { Router } from 'express';
 import getRandomInt from '../../utils/getRandomInt.js';
-import db from '../../utils/db.js';
 const router = Router();
 
 const getRandomFourNumber = () =>
@@ -16,16 +15,15 @@ const delay = (timeout) =>
     }, timeout);
   });
 
+let authNumber;
+
 router.get('/', async (req, res, next) => {
-  const authNumber = getRandomFourNumber();
-  db.data.authNumber = authNumber;
-  await db.write();
+  authNumber = getRandomFourNumber();
   await delay(2000);
   res.send(authNumber);
 });
 
 router.get('/check', async (req, res, next) => {
-  const { authNumber } = db.data;
   res.send(authNumber === req.query.authNumber);
 });
 
