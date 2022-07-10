@@ -1,4 +1,5 @@
 import addErrorToggleEvent from './utils/addErrorToggleEvent.js';
+import { getAuthNumber } from './utils/api.js';
 import isValid from './utils/isValid.js';
 import pipe from './utils/pipe.js';
 import { preventNonNumericInput } from './utils/regex.js';
@@ -7,6 +8,8 @@ import { validatePhone } from './utils/validate.js';
 const $form = document.querySelector('form');
 const $phoneLabel = document.querySelector('.phone-label');
 const $getAuthNumberButton = document.querySelector('.get-auth-number');
+const $authNumberLabel = document.querySelector('.auth-number-label');
+const $submitButton = document.querySelector('.submit-button');
 
 $form.addEventListener('input', () => {
   if (isValid($phoneLabel)) {
@@ -35,7 +38,16 @@ $phoneLabel.addEventListener('input', (event) => {
   target.value = pipe(preventNonNumericInput, addSlashToPhone)(target.value);
 });
 
-$getAuthNumberButton.addEventListener('click', () => {});
+$getAuthNumberButton.addEventListener('click', async () => {
+  $form.classList.add('phone-success');
+  $authNumberLabel.querySelector('input').value = await getAuthNumber();
+  $submitButton.disabled = false;
+});
+
+$submitButton.addEventListener('click', (event) => {
+  event.preventDefault();
+  window.location.href = 'signup';
+});
 
 addErrorToggleEvent(
   $phoneLabel,

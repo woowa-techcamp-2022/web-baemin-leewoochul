@@ -21,3 +21,11 @@ export async function signup(email, nickname, password, birthDate) {
   });
   return result;
 }
+
+export async function getAuthNumber() {
+  const response = await fetchData('/api/auth', {
+    method: 'GET',
+  });
+  const result = await response.json();
+  return result;
+}

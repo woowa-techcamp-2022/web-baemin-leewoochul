@@ -4,7 +4,7 @@ include ./components/header
 include ./components/form-label
 
 block head 
-  //- link(rel="stylesheet", href="/stylesheets/phone.css")
+  link(rel="stylesheet", href="/stylesheets/phone.css")
   script(type="module", src="/javascripts/phone.js") 
 
 block content
@@ -12,3 +12,5 @@ block content
   form
     +form-label("text", "phone", "휴대전화")
     button.get-auth-number(type="button", disabled) 인증번호 받기
+    +form-label("text", "auth-number", "인증번호")
+    button.submit-button(disabled) 다음
