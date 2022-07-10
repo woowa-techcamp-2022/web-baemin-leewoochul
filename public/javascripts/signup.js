@@ -1,3 +1,4 @@
+import addErrorToggleEvent from './utils/addErrorToggleEvent.js';
 import { signup } from './utils/api.js';
 import pipe from './utils/pipe.js';
 import { preventNonNumericInput } from './utils/regex.js';
@@ -7,6 +8,7 @@ import {
   validateNickname,
   validatePassword,
 } from './utils/validate.js';
+import isValid from './utils/isValid.js';
 
 const $form = document.querySelector('form');
 const $emailLabel = document.querySelector('.email-label');
@@ -31,8 +33,6 @@ $form.addEventListener('submit', async (event) => {
   }
 });
 
-const isValid = ($target) => $target.classList.contains('valid');
-
 $form.addEventListener('input', () => {
   if (
     isValid($nicknameLabel) &&
@@ -43,16 +43,6 @@ $form.addEventListener('input', () => {
     $submitButton.disabled = false;
   }
 });
-
-function setError($target, value) {
-  if (value === '') {
-    $target.classList.remove('has-error');
-  } else {
-    $target.classList.add('has-error');
-  }
-  const $error = $target.querySelector('.error');
-  $error.innerHTML = value;
-}
 
 $emailLabel.addEventListener('input', (event) => {
   setError($emailLabel, '');
@@ -102,18 +92,6 @@ $birthDateLabel.addEventListener('input', (event) => {
     addDotToBirthDate
   )(target.value);
 });
-
-function addErrorToggleEvent($target, errorMessage, validator) {
-  $target.addEventListener('input', (event) => {
-    if (validator(event.target.value)) {
-      $target.classList.add('valid');
-      setError($target, '');
-    } else {
-      $target.classList.remove('valid');
-      setError($target, errorMessage);
-    }
-  });
-}
 
 addErrorToggleEvent(
   $nicknameLabel,

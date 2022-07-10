@@ -1,5 +1,15 @@
-export { validateEmail, validateNickname, validatePassword, validateBirthDate };
+export {
+  validatePhone,
+  validateEmail,
+  validateNickname,
+  validatePassword,
+  validateBirthDate,
+};
 
+const validatePhone = (value) =>
+  /01[016789]-[^0][0-9]{2,3}-[0-9]{4}/.test(value);
+
+var patternPhone = /01[016789]-[^0][0-9]{2,3}-[0-9]{3,4}/; // var patternPhone = new RegExp("01[016789]-[^0][0-9]{2,3}-[0-9]{3,4}");
 // 출처: https://html.spec.whatwg.org/multipage/input.html#email-state-(type=email)
 const validateEmail = (value) =>
   /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/.test(

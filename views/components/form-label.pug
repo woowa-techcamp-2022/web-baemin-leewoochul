@@ -1,0 +1,7 @@
+mixin form-label(type, name, value)
+  label(class=name + "-label")= value
+    div.input-container
+      input.form-input(type= type, name= name)
+      img.check-icon.inactive(src="/images/check-inactive.png", alt="미완료")
+      img.check-icon.active(src="/images/check-active.png", alt="완료")
+    p.error

@@ -1,22 +1,14 @@
 extends layout
 
-mixin label(type, name, value)
-  label(class=name + "-label")= value
-    div.input-container
-      input.form-input(type= type, name= name)
-      img.check-icon.inactive(src="/images/check-inactive.png", alt="미완료")
-      img.check-icon.active(src="/images/check-active.png", alt="완료")
-    p.error
+include ./components/header
+include ./components/form-label
 
 block head 
   link(rel="stylesheet", href="/stylesheets/signup.css")
   script(type="module", src="/javascripts/signup.js") 
 
 block content
-  div.title-bar
-    h1 회원가입
-    a.back(href="/login") 
-      img(src="/images/arrow-left.svg", alt="뒤로가기")
+  +header('/phone', 'back', '회원가입')
   form.signup-form
     label.email-label 이메일
       div.email-input
@@ -27,7 +19,7 @@ block content
           img.check-icon(src="/images/check-active.png", alt="완료")
         button.duplicate-check-button(type="button") 중복확인
       p.error
-    +label("text", "nickname", "닉네임")
-    +label("password", "password", "비밀번호")
-    +label("text", "birthDate", "생년월일")
+    +form-label("text", "nickname", "닉네임")
+    +form-label("password", "password", "비밀번호")
+    +form-label("text", "birthDate", "생년월일")
     button.submit-button(disabled) 완료

@@ -17,11 +17,6 @@
   gap: 8px;
 }
 
-.input-container {
-  position: relative;
-  width: 100%;
-}
-
 .email-input .duplicate-check-button {
   background: 0;
   border-radius: 4px;
@@ -60,30 +55,7 @@
   display: none;
 }
 
-.check-icon {
-  position: absolute;
-  top: 50%;
-  right: 0;
-  transform: translateY(-50%);
-}
-
 .signup-form:not(.email-success) label:not(.email-label),
 .signup-form:not(.email-success) .submit-button {
-  display: none;
-}
-
-.signup-form label:not(.valid) .check-icon.active {
-  display: none;
-}
-
-.signup-form label:not(.valid) .check-icon.inactive {
-  display: block;
-}
-
-.signup-form label.valid .check-icon.active {
-  display: block;
-}
-
-.signup-form label.valid .check-icon.inactive {
   display: none;
 }
