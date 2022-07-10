@@ -5,6 +5,7 @@ form {
 }
 
 form:not(.phone-success) .auth-number-label,
+form:not(.phone-success) .refresh-auth-number,
 form:not(.phone-success) .submit-button {
   display: none;
 }

@@ -9,6 +9,7 @@ const $form = document.querySelector('form');
 const $phoneLabel = document.querySelector('.phone-label');
 const $getAuthNumberButton = document.querySelector('.get-auth-number');
 const $authNumberLabel = document.querySelector('.auth-number-label');
+const $refreshAuthNumberButton = document.querySelector('.refresh-auth-number');
 const $submitButton = document.querySelector('.submit-button');
 
 $form.addEventListener('input', () => {
@@ -38,10 +39,18 @@ $phoneLabel.addEventListener('input', (event) => {
   target.value = pipe(preventNonNumericInput, addSlashToPhone)(target.value);
 });
 
+async function setAuthNumber() {
+  $authNumberLabel.querySelector('input').value = await getAuthNumber();
+}
+
 $getAuthNumberButton.addEventListener('click', async () => {
   $form.classList.add('phone-success');
-  $authNumberLabel.querySelector('input').value = await getAuthNumber();
   $submitButton.disabled = false;
+  await setAuthNumber();
+});
+
+$refreshAuthNumberButton.addEventListener('click', async () => {
+  await setAuthNumber();
 });
 
 $submitButton.addEventListener('click', (event) => {
