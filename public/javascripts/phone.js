@@ -3,7 +3,7 @@ import { getAuthNumber } from './utils/api.js';
 import isValid from './utils/isValid.js';
 import pipe from './utils/pipe.js';
 import { preventNonNumericInput } from './utils/regex.js';
-import { validatePhone } from './utils/validate.js';
+import { validateAuthNumber, validatePhone } from './utils/validate.js';
 
 const $form = document.querySelector('form');
 const $phoneLabel = document.querySelector('.phone-label');
@@ -45,12 +45,14 @@ async function setAuthNumber() {
 
 $getAuthNumberButton.addEventListener('click', async () => {
   $form.classList.add('phone-success');
-  $submitButton.disabled = false;
   await setAuthNumber();
+  $submitButton.disabled = false;
 });
 
 $refreshAuthNumberButton.addEventListener('click', async () => {
+  $submitButton.disabled = true;
   await setAuthNumber();
+  $submitButton.disabled = false;
 });
 
 $submitButton.addEventListener('click', (event) => {
@@ -62,4 +64,17 @@ addErrorToggleEvent(
   $phoneLabel,
   '올바른 휴대폰 번호를 입력해주세요.',
   validatePhone
+);
+
+addErrorToggleEvent(
+  $authNumberLabel,
+  '올바른 인증 번호를 입력해주세요.',
+  validateAuthNumber,
+  () => {
+    if (isValid($authNumberLabel)) {
+      $submitButton.disabled = false;
+    } else {
+      $submitButton.disabled = true;
+    }
+  }
 );

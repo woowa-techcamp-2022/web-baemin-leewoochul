@@ -9,6 +9,7 @@ import {
   validatePassword,
 } from './utils/validate.js';
 import isValid from './utils/isValid.js';
+import setError from './utils/setError.js';
 
 const $form = document.querySelector('form');
 const $emailLabel = document.querySelector('.email-label');

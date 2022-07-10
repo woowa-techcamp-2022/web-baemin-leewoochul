@@ -29,3 +29,11 @@ export async function getAuthNumber() {
   const result = await response.json();
   return result;
 }
+
+export async function checkAuthNumber(value) {
+  const response = await fetchData(`/api/auth/check?authNumber=${value}`, {
+    method: 'GET',
+  });
+  const result = await response.json();
+  return result;
+}
