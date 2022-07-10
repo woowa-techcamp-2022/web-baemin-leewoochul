@@ -6,6 +6,8 @@ const allCheckboxes = [
 const necessaryChekboxes = [
   ...document.querySelectorAll('.check-label.necessary input'),
 ];
+const radioButtons = [...document.querySelectorAll('.radio-label input')];
+const submitButton = document.querySelector('.submit-button');
 
 const hasAllCheckboxChecked = () =>
   allCheckboxes.filter((checkbox) => checkbox.checked === false).length === 0;
@@ -31,10 +33,9 @@ allAgreeCheckbox.addEventListener('click', () => {
   else checkAll();
 });
 
-const hasAllNecessaryCheckboxChecked = () => {
+const hasAllNecessaryCheckboxChecked = () =>
   necessaryChekboxes.filter((checkbox) => checkbox.checked === false).length ===
-    0;
-};
+  0;
 
 const hasAllAgreeChekboxChecked = () => allAgreeCheckbox.checked;
 
@@ -46,4 +47,31 @@ allCheckboxes.forEach((checkbox) => {
       uncheck(allAgreeCheckbox);
     }
   });
+});
+
+const hasRadioButtonChecked = () =>
+  radioButtons.filter((button) => button.checked).length > 0;
+
+function setSubmitButtonActive() {
+  submitButton.removeAttribute('tabindex');
+  submitButton.classList.remove('disabled');
+}
+
+function setSubmitButtonDisable() {
+  submitButton.tabIndex = -1;
+  submitButton.classList.add('disabled');
+}
+
+function toggleSubmitButton() {
+  if (hasAllNecessaryCheckboxChecked() && hasRadioButtonChecked()) {
+    setSubmitButtonActive();
+  } else {
+    setSubmitButtonDisable();
+  }
+}
+
+document.body.addEventListener('click', (event) => {
+  if (event.target.closest('input')) {
+    toggleSubmitButton();
+  }
 });
