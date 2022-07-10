@@ -3,9 +3,7 @@ import express, { json } from 'express';
 import createError from 'http-errors';
 import logger from 'morgan';
 import apiRouter from './routes/api/index.js';
-import indexRouter from './routes/index.js';
-import loginRouter from './routes/login.js';
-import signupRouter from './routes/signup.js';
+import pageRouter from './routes/page/index.js';
 import db from './utils/db.js';
 
 await db.read();
@@ -26,9 +24,7 @@ app.use(cookieParser());
 app.use(express.static('./public'));
 
 app.use('/api', apiRouter);
-app.use('/', indexRouter);
-app.use('/login', loginRouter);
-app.use('/signup', signupRouter);
+app.use('/', pageRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
