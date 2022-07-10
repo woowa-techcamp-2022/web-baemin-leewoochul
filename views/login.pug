@@ -7,7 +7,7 @@ block head
   script(type="module", src="/javascripts/login.js") 
 
 block content
-  +header('/')
+  +header('/', 'close')
   form.login-form 
     div.input-container
       input.form-input(type="text", name="nicknameOrEmail", placeholder="아이디 또는 이메일")

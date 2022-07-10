@@ -1,0 +1,10 @@
+extends layout
+
+include ./components/header
+
+block head 
+  link(rel="stylesheet", href="/stylesheets/phone.css")
+  script(type="module", src="/javascripts/phone.js") 
+
+block content
+  +header('/agreement', 'back', '회원가입')

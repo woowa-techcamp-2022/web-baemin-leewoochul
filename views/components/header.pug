@@ -1,6 +1,9 @@
-mixin header(href, title)
+mixin header(href, imgType, title)
   header
     a.back(href= href) 
-      img(src="/images/cancel.svg", alt="뒤로가기")
+      if imgType === 'close'
+        img(src="/images/cancel.svg", alt="뒤로가기")
+      else if imgType === 'back'
+        img(src="/images/arrow-left.svg", alt="뒤로가기")
     if title
       h1= title
