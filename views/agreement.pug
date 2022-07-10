@@ -19,15 +19,16 @@ block head
   script(type="module", src="/javascripts/agreement.js") 
 
 block content
-  +checkLabel('all-agree',"전체 동의")
-  hr
-  div.checkbox-container
-    +checkLabel("necessary", "배달의민족 이용약관 동의")
-    +checkLabel("necessary", "전자금융거래 이용약관 동의")
-    +checkLabel("necessary", "개인정보 수집이용 동의")
-    +checkLabel("optional", "개인정보 제3자 제공 동의 (선택)")
-    +checkLabel("optional", "마케팅 정보 메일, SMS 수신동의 (선택)")
-  div.radio-container
-    +radioLabel("up")
-    +radioLabel("down")
-  a.submit-button.disabled(href="/phone", tabIndex="-1") 다음으로
+  form
+    +checkLabel('all-agree',"전체 동의")
+    hr
+    div.checkbox-container
+      +checkLabel("necessary", "배달의민족 이용약관 동의")
+      +checkLabel("necessary", "전자금융거래 이용약관 동의")
+      +checkLabel("necessary", "개인정보 수집이용 동의")
+      +checkLabel("optional", "개인정보 제3자 제공 동의 (선택)")
+      +checkLabel("optional", "마케팅 정보 메일, SMS 수신동의 (선택)")
+    div.radio-container
+      +radioLabel("up")
+      +radioLabel("down")
+    button.submit-button(disabled) 다음으로

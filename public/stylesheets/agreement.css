@@ -10,8 +10,3 @@
   gap: 6px;
   margin: 24px 0;
 }
-
-.disabled {
-  pointer-events: none;
-  background-color: #aaa !important;
-}

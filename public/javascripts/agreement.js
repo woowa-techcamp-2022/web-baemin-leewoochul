@@ -1,3 +1,4 @@
+const form = document.querySelector('form');
 const allAgreeCheckbox = document.querySelector('.check-label.all-agree input');
 const checkboxContainer = document.querySelector('.checkbox-container');
 const allCheckboxes = [
@@ -52,21 +53,11 @@ allCheckboxes.forEach((checkbox) => {
 const hasRadioButtonChecked = () =>
   radioButtons.filter((button) => button.checked).length > 0;
 
-function setSubmitButtonActive() {
-  submitButton.removeAttribute('tabindex');
-  submitButton.classList.remove('disabled');
-}
-
-function setSubmitButtonDisable() {
-  submitButton.tabIndex = -1;
-  submitButton.classList.add('disabled');
-}
-
 function toggleSubmitButton() {
   if (hasAllNecessaryCheckboxChecked() && hasRadioButtonChecked()) {
-    setSubmitButtonActive();
+    submitButton.disabled = false;
   } else {
-    setSubmitButtonDisable();
+    submitButton.disabled = true;
   }
 }
 
@@ -74,4 +65,9 @@ document.body.addEventListener('click', (event) => {
   if (event.target.closest('input')) {
     toggleSubmitButton();
   }
+});
+
+form.addEventListener('submit', (event) => {
+  event.preventDefault();
+  window.location.href = '/phone';
 });
