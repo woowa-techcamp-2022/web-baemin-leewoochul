@@ -1,5 +1,7 @@
 extends layout
 
+include ./components/header
+
 mixin checkLabel(className, text) 
   label.check-label(class= className)
     input(type="checkbox")
@@ -19,6 +21,7 @@ block head
   script(type="module", src="/javascripts/agreement.js") 
 
 block content
+  +header('/login', '회원가입')
   form
     +checkLabel('all-agree',"전체 동의")
     hr

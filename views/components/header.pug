@@ -1,0 +1,6 @@
+mixin header(href, title)
+  header
+    a.back(href= href) 
+      img(src="/images/cancel.svg", alt="뒤로가기")
+    if title
+      h1= title
