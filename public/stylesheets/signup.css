@@ -67,7 +67,7 @@
   transform: translateY(-50%);
 }
 
-.signup-form:not(.email-success) label:not([for='email']),
+.signup-form:not(.email-success) label:not(.email-label),
 .signup-form:not(.email-success) .submit-button {
   display: none;
 }
