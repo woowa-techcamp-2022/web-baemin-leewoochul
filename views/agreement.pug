@@ -5,6 +5,15 @@ mixin checkLabel(className, text)
     input(type="checkbox")
     span= text
 
+mixin radioLabel(value) 
+  label.radio-label
+    input(type="radio" name="age" value= value)
+    span 
+      if value === "up"
+        | 만 14세 이상입니다.
+      else 
+        | 만 14세 미만입니다.
+
 block head 
   link(rel="stylesheet", href="/stylesheets/agreement.css")
   script(type="module", src="/javascripts/agreement.js") 
@@ -18,5 +27,6 @@ block content
     +checkLabel("necessary", "개인정보 수집이용 동의")
     +checkLabel("optional", "개인정보 제3자 제공 동의 (선택)")
     +checkLabel("optional", "마케팅 정보 메일, SMS 수신동의 (선택)")
-
-    
+  div.radio-container
+    +radioLabel("up")
+    +radioLabel("down")
